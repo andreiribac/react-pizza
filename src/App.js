@@ -3,12 +3,11 @@ import Button from './Button';
 import Header from './Header';
 
 
+// TODO lesson 3 - 38:56 https://www.youtube.com/watch?v=SZma4oQN8SY&list=PL0FGkDGJQjJFMRmP7wZ771m1Nx-m2_qXq&index=3
 function App() {
 	return (
 		<div className="wrapper">
 			<Header />
-			<Button outline>Button</Button>
-			<Button>Button 2</Button>
 			<div className="content">
 				<div className="container">
 					<div className="content__top">

@@ -2,12 +2,16 @@ import React, { Component } from 'react'
 import classNames from 'classnames';
 
 
-function Button(props) {
+function Button({onClick, className, outline, children}) {
 	return (
 		// <button className={`button ${this.props.outline ? 'button--outline' : ''}`}>{this.props.children}</button>
-		<button className={classNames('button', {
-			'button--outline': props.outline,
-		})}>{props.children}</button>
+		<button
+			onClick={onClick}
+			className={classNames('button', className, {
+				'button--outline': outline,
+			})}>
+			{children}
+		</button>
 		// <a href="/cart.html" className="button button--cart">
 		// 	<span>520 ₽</span>
 		// 	<div className="button__delimiter"></div>
