@@ -17,6 +17,7 @@ const sortsArr = [
 	"цене",
 	"алфавиту",
 ];
+// TODO lesson 6 32.53 - https://www.youtube.com/watch?v=jby4ePnSqo4&list=PL0FGkDGJQjJFMRmP7wZ771m1Nx-m2_qXq&index=6
 function App() {
 
 	const [pizzas, setPizzas] = React.useState([])
