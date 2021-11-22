@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom';
 import './scss/app.scss';
 import App from './App';
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from 'react-redux'
+import store from './redux/store';
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
       {/* <Routes>
         <Route exact path="/" element={<App />} />
         <Route exact path="/header" element={<Header />} />
