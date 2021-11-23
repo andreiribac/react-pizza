@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from "react-router-dom";
 import axios from 'axios';
+import { connect } from 'react-redux'
 import './App.css';
 import { Header } from './components';
 import { Home, Cart } from './pages';
+import { setPizzas } from './redux/actions/pizzas';
+import filters from './redux/reducers/filters';
 
 const categoriesArr = [
 	"Мясные",
@@ -52,30 +55,38 @@ class App extends React.Component {
 		super(props);
 	}
 
+	componentDidMount() {
+		axios.get('http://localhost:3000/db.json').then(({ data }) => {
+			this.props.setPizzas(data.pizzas);
+		});
+	}
+
 	render() {
-		// const [pizzas, setPizzas] = React.useState([])
-		// useEffect(() => {
-		//   axios.get('http://localhost:3000/db.json').then(({
-		//     data
-		//   }) => {
-		//     setPizzas(data.pizzas);
-		//   });
-		// }, []);
-		return (<div className="wrapper">
-			<Header />
-			<div className="content">
-				<Routes>
-					<Route exact path="/" element={<Home category={categoriesArr} // sort={sortsArr}
-						pizzas={[]} />} />
-					<Route exact path="cart" element={<Cart />} />
-					<Route path="*" element={"ошибка 404"} />
-				</Routes>
+		console.log(this.props);
+		return (
+			<div className="wrapper">
+				<Header />
+				<div className="content">
+					<Routes>
+						<Route exact path="/" element={<Home pizzas={this.props.items} />} />
+						<Route exact path="cart" element={<Cart />} />
+						<Route path="*" element={"ошибка 404"} />
+					</Routes>
+				</div>
 			</div>
-		</div>);
+		);
 	}
 
 }
 
-// TODO 1.45.45 https://www.youtube.com/watch?v=jby4ePnSqo4&list=PL0FGkDGJQjJFMRmP7wZ771m1Nx-m2_qXq&index=6&t=1973s
+const mapStateToProps = state => {
+	return {
+		items: state.pizzas.items,
+		filters: state.filters,
+	};
+};
+const mapDispatchToProps = {
+	setPizzas,
+};
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
