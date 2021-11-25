@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types';
-// TODO нихуя не понятно 1,59,59 https://www.youtube.com/watch?v=Ix9iV72GMKg&list=PL0FGkDGJQjJFMRmP7wZ771m1Nx-m2_qXq&index=8
+// TODO нихуя не понятно 1,47,09 https://www.youtube.com/watch?v=Ix9iV72GMKg&list=PL0FGkDGJQjJFMRmP7wZ771m1Nx-m2_qXq&index=8
 const SortPopup = React.memo(
 	function SortPopup({ items, activeSortType, onClickSortType }) {
-		console.log('items: ', items);
 		const [visiblePopup, setVisiblePopup] = useState(false);
 		const sortRef = useRef();
 		const activeLabel = items.find((obj) => obj.type === activeSortType).name;
@@ -46,7 +45,7 @@ const SortPopup = React.memo(
 						/>
 					</svg>
 					<b>Сортировка по:</b>
-					{/* <span onClick={toggleVisiblePopup}>{activeLabel}</span> */}
+					<span onClick={toggleVisiblePopup}>{activeLabel}</span>
 				</div>
 				{visiblePopup &&
 					<div className="sort__popup">
@@ -74,6 +73,6 @@ SortPopup.propTypes = {
 	onClickSortType: PropTypes.func.isRequired,
 };
 
-SortPopup.defaultProps = { items: [], };
+SortPopup.defaultProps = { items: [] };
 
 export default SortPopup;

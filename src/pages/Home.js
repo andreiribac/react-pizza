@@ -16,6 +16,7 @@ function Home() {
 	const items = useSelector(({ pizzas }) => pizzas.items);
 	const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
 	const { category, sortBy} = useSelector(({ filters }) => filters);
+	console.log('sortBy: ', sortBy);
 
 	React.useEffect(() => {
 		dispatch(fetchPizzas());
@@ -43,7 +44,7 @@ function Home() {
 					items={categoryName}
 				/>
 				<SortPopup
-					activeSortType={sortBy.type}
+					activeSortType={sortBy}
 					items={sortItems}
 					onSelectSortType={onSelectSortType}
 				/>
