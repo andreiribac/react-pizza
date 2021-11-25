@@ -1,27 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Routes, Route } from "react-router-dom";
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
+
+// import { useDispatch } from 'react-redux';
 import './App.css';
 
 import { Header } from './components';
 import { Home, Cart } from './pages';
-import { setPizzas } from './redux/actions/pizzas';
+
 
 const App = () => {
-	const dispatch = useDispatch();
-	// const {items} = useSelector(({ pizzas, filters }) => {
-	// 	return {
-	// 		items: pizzas.items,
-	// 		// sortBy: filters.sortBy
-	// 	};
-	// });
+	// const dispatch = useDispatch();
 
-	useEffect(() => {
-		axios.get('http://localhost:3001/pizzas').then(({ data }) => {
-			dispatch(setPizzas(data));
-		});
-	}, []);
+	
 	return (
 		<div className="wrapper">
 			<Header />
@@ -36,15 +26,4 @@ const App = () => {
 	);
 };
 
-//  (state) => {
-// 	return {
-// 		items: state.pizzas.items,
-// 		filters: state.filters,
-// 	};
-// };
-// const mapDispatchToProps = {
-// 	setPizzas,
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
 export default App;

@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import LoadingBlock from './LoadingBlock'
+import ContentLoader from "react-content-loader"
 
-function PizzaBlock({ id, imageUrl, name, types, sizes, price, category, rating }) {
+function PizzaBlock({ imageUrl, name, types, sizes, price, isLoading }) {
 	const availableType = ['тонкое', 'традиционное'];
 	const availableSizes = [26, 30, 40];
 	const [activeType, setactiveType] = React.useState(types[0]);
 	const [activeSize, setActiveSize] = React.useState(0);
-
 
 	const onSelectType = (index) => {
 		setactiveType(index);
@@ -15,6 +16,8 @@ function PizzaBlock({ id, imageUrl, name, types, sizes, price, category, rating 
 	const onSelectSize = (index) => {
 		setActiveSize(index);
 	}
+	
+
 	return (
 		<div className="pizza-block">
 			<img
