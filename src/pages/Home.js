@@ -4,7 +4,7 @@ import { Categories, PizzaBlock, SortPopup, PizzaLoadingBlock } from '../compone
 import { setCategory, setSortBy } from '../redux/actions/filters';
 import { fetchPizzas } from '../redux/actions/pizzas';
 
-const categoryName = ["Мясные", "Вегетарианская", "Гриль", "Острые", "Закрытые", ];
+const categoryName = ["Мясные", "Вегетарианская", "Гриль", "Острые", "Закрытые",];
 const sortItems = [
 	{ name: 'популярности', type: 'popular', order: 'desc' },
 	{ name: 'цене', type: 'price', order: 'desc' },
@@ -15,8 +15,8 @@ function Home() {
 	const dispatch = useDispatch();
 	const items = useSelector(({ pizzas }) => pizzas.items);
 	const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
-	const { category, sortBy} = useSelector(({ filters }) => filters);
-	
+	const { category, sortBy } = useSelector(({ filters }) => filters);
+
 
 	React.useEffect(() => {
 		dispatch(fetchPizzas(category, sortBy));
@@ -33,7 +33,7 @@ function Home() {
 			dispatch(setSortBy(type))
 		},
 		[],
-		)
+	)
 
 	return (
 		<div className="container">
@@ -55,8 +55,9 @@ function Home() {
 					? items.map(pizza => {
 						return (
 							<PizzaBlock
+								onClickAddPizza={(obj) => console.log(obj)}
 								key={pizza.id}
-							isLoading={true}
+								isLoading={true}
 								{...pizza}
 							/>
 						)

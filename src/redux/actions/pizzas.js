@@ -20,7 +20,6 @@ export const setLoaded = (payload) => {
 }
 
 export const fetchPizzas = (category, sortBy) => (dispatch) => {
-	console.log(category, sortBy);
 	dispatch({
 		type: 'SET_LOADED',
 		payload: false,
