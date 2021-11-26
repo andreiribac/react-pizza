@@ -16,10 +16,10 @@ function Home() {
 	const items = useSelector(({ pizzas }) => pizzas.items);
 	const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
 	const { category, sortBy} = useSelector(({ filters }) => filters);
-	console.log('sortBy: ', sortBy);
+	
 
 	React.useEffect(() => {
-		dispatch(fetchPizzas());
+		dispatch(fetchPizzas(category, sortBy));
 	}, [category, sortBy]);
 
 	const onSelectCategory = React.useCallback(
@@ -33,7 +33,7 @@ function Home() {
 			dispatch(setSortBy(type))
 		},
 		[],
-	)
+		)
 
 	return (
 		<div className="container">
@@ -44,9 +44,9 @@ function Home() {
 					items={categoryName}
 				/>
 				<SortPopup
-					activeSortType={sortBy}
+					activeSortType={sortBy.type}
 					items={sortItems}
-					onSelectSortType={onSelectSortType}
+					onClickSortType={onSelectSortType}
 				/>
 			</div>
 			<h2 className="content__title">Все пиццы</h2>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types';
-// TODO нихуя не понятно 1,47,09 https://www.youtube.com/watch?v=Ix9iV72GMKg&list=PL0FGkDGJQjJFMRmP7wZ771m1Nx-m2_qXq&index=8
 const SortPopup = React.memo(
 	function SortPopup({ items, activeSortType, onClickSortType }) {
 		const [visiblePopup, setVisiblePopup] = useState(false);
@@ -53,7 +52,9 @@ const SortPopup = React.memo(
 							{items &&
 								items.map((obj, index) => (
 									<li
-										onClick={() => onSelectItem(obj)}
+										onClick={() => {
+											onSelectItem(obj)
+										}}
 										className={activeSortType === obj.type ? 'active' : ''}
 										key={`${obj.type}_${index}`}>
 										{obj.name}
