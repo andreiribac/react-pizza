@@ -4,20 +4,29 @@ const initialState = {
 	totalCount: 0,
 }
 
+const getTotalPrice = arr => arr.reduce((sum, obj) => obj.price + sum, 0);
+
 
 const cart = (state = initialState, action) => {
 	switch (action.type) {
 		case 'ADD_PIZZA_CART':
+			const currentPizzaItems = !state.items[action.payload.id]
+				? [action.payload]
+				: [...state.items[action.payload.id], action.payload,];
 			const newItems = {
 				...state.items,
 				// если хотим добалять динамический обьект, ключ то обворачиваем в [] - [action.payload.id]
-				[action.payload.id]: !state.items[action.payload.id]
-					? [action.payload]
-					: [...state.items[action.payload.id], action.payload,]
+				// [action.payload.id]: !state.items[action.payload.id]
+				// 	? [action.payload]
+				// 	: [...state.items[action.payload.id], action.payload,]
+				[action.payload.id]: {
+					items: currentPizzaItems,
+					totalPrice: getTotalPrice(currentPizzaItems),
+				}
 			};
 			const allPizzas = [].concat.apply([], Object.values(newItems));
-			const totalPrice = allPizzas.reduce((sum, obj) => obj.price + sum, 0);
-
+			const totalPrice = getTotalPrice(allPizzas);
+// TODO 50.22
 			return {
 				...state,
 				items: newItems,

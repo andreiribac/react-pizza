@@ -1,14 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { CartItem } from '../components'
-// import pizzas from '../redux/reducers/pizzas';
 
 function Cart() {
 	const { items, totalPrice, totalCount} = useSelector(({cart}) => cart);
-	const pizzas = Object.keys(items).map(key => {
+	const addedPizzas = Object.keys(items).map(key => {
 		return items[key][0];
 	});
-	// TODO 10 lesson 36.53 - https://www.youtube.com/watch?v=hCMnDgOmURQ&list=PL0FGkDGJQjJFMRmP7wZ771m1Nx-m2_qXq&index=10
 
 	return (
 		<div className="container container--cart">
@@ -32,11 +30,17 @@ function Cart() {
 					</div>
 				</div>
 				<div className="content__items">
-					<CartItem
-						name="Сырный цыпленок"
-						type="тонкое"
-						size={26}
-					/>
+					{
+						addedPizzas.map(obj => (
+							<CartItem
+								name={obj.name}
+								type={obj.type}
+								size={obj.size}
+								totalPrice
+							/>
+						))
+					}
+					
 
 				</div>
 				<div className="cart__bottom">
