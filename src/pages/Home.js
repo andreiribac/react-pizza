@@ -67,7 +67,7 @@ function Home() {
 								onClickAddPizza={handleAddPizzaToCart}
 								key={pizza.id}
 								// isLoading={true}
-								addedCount={cartItems[pizza.id] && cartItems[pizza.id].length}
+								addedCount={cartItems[pizza.id] && cartItems[pizza.id].items.length}
 								{...pizza}
 							/>
 						)
